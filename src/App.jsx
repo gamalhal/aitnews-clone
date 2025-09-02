@@ -1,35 +1,70 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// // src/App.jsx
+// import React from 'react';
+// import { Header } from './components/Header';
+// import { ArticleCard } from './components/ArticleCard';
+// // سنحذف محتوى App.css الافتراضي ونعتمد على Tailwind
+
+// function App() {
+//   // بيانات مؤقتة لعرضها
+//   const sampleArticle = {
+//     imageUrl: "https://aitnews.com/wp-content/uploads/2025/09/Meta-AI-Project-Collapse.jpg",
+//     category: "الأخبار التقنية",
+//     title: "خلافات متصاعدة.. مشروع ميتا الطموح للذكاء الاصطناعي على شفا الانهيار"
+//   };
+
+//   return (
+//     <div className="bg-gray-100 min-h-screen">
+//       <Header />
+//       <main className="container mx-auto p-4">
+//         <h1 className="text-3xl font-bold my-6">أحدث المستجدات التقنية:</h1>
+//         {/* هنا سنعرض شبكة من المقالات */}
+//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+//           <ArticleCard {...sampleArticle} />
+//           <ArticleCard {...sampleArticle} />
+//           <ArticleCard {...sampleArticle} />
+//           {/* كرر البطاقة عدة مرات لترى التصميم */}
+//         </div>
+//       </main>
+//       {/* يمكن إضافة الفوتر هنا لاحقاً */}
+//     </div>
+//   );
+// }
+
+// export default App;
+
+// src/App.jsx (تعديل)
+import React, { useState, useEffect } from 'react';
+import { Header } from './components/Header';
+import { ArticleCard } from './components/ArticleCard';
+import { articles as apiArticles } from './data'; // استيراد بياناتنا
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    // في مشروع حقيقي، ستكون هنا عملية fetch من API
+    // الآن، نحن فقط نضبط الحالة من ملفنا المحلي
+    setArticles(apiArticles);
+  }, []); // [] تعني أن هذا التأثير يعمل مرة واحدة فقط عند تحميل المكون
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="bg-gray-100 min-h-screen">
+      <Header />
+      <main className="container mx-auto p-4">
+        <h1 className="text-3xl font-bold my-6">أحدث المستجدات التقنية:</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {articles.map(article => (
+            <ArticleCard 
+              key={article.id} // المفتاح مهم جداً في الرياكت للمساعدة في الأداء
+              imageUrl={article.imageUrl}
+              category={article.category}
+              title={article.title}
+            />
+          ))}
+        </div>
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;
