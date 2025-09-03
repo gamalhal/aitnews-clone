@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ArticleCard } from "../components/ArticleCard"; 
 import { articles as apiArticles } from "../data"; 
+import { Header } from '../components/Header'; // تأكد من المسار الصحيح ,حل المشكله الصففحه البيضاء فى بدجدايه المشروع
 
 export function HomePage() {
   const [articles, setArticles] = useState([]);
