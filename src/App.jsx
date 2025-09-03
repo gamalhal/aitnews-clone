@@ -132,27 +132,81 @@
 
 // src/App.jsx (تعديل)
 
+// import React from 'react';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import { Header } from './components/Header';
+// import { HomePage } from './pages/HomePage';
+// import { ArticlePage } from './pages/ArticlePage';
+// import { Footer } from './components/Footer';
+// import { CategoryPage } from './pages/CategoryPage'; // <-- 1. استورد صفحة القسم
+
+// function App() {
+//   return (
+//     <Router>
+//       <div className="flex flex-col min-h-screen bg-gray-100">
+//         <Header />
+//         <main className="flex-grow">
+//           <Routes>
+//             <Route path="/" element={<HomePage />} />
+//             <Route path="/article/:id" element={<ArticlePage />} />
+//             {/* 2. أضف المسار الديناميكي للأقسام */}
+//             <Route path="/category/:categoryName" element={<CategoryPage />} />
+//           </Routes>
+//         </main>
+//         <Footer />
+//       </div>
+//     </Router>
+//   );
+// }
+
+// export default App;
+
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// استيراد المكونات الرئيسية للتصميم
 import { Header } from './components/Header';
+import { Footer } from './components/Footer';
+
+// استيراد جميع الصفحات
 import { HomePage } from './pages/HomePage';
 import { ArticlePage } from './pages/ArticlePage';
-import { Footer } from './components/Footer';
-import { CategoryPage } from './pages/CategoryPage'; // <-- 1. استورد صفحة القسم
+import { CategoryPage } from './pages/CategoryPage';
+import { SearchResultsPage } from './pages/SearchResultsPage';
+import { NotFoundPage } from './pages/NotFoundPage';
 
 function App() {
   return (
     <Router>
+      {/* استخدمنا flexbox لجعل الفوتر يلتصق بأسفل الصفحة 
+        حتى لو كان المحتوى في الصفحة قليلاً.
+      */}
       <div className="flex flex-col min-h-screen bg-gray-100">
         <Header />
+        
+        {/* الكلاس 'flex-grow' يجعل هذا الجزء يأخذ كل المساحة المتاحة،
+          مما يدفع الفوتر إلى الأسفل.
+        */}
         <main className="flex-grow">
           <Routes>
+            {/* المسار الرئيسي للموقع */}
             <Route path="/" element={<HomePage />} />
+            
+            {/* مسار عرض المقال الكامل (مسار ديناميكي) */}
             <Route path="/article/:id" element={<ArticlePage />} />
-            {/* 2. أضف المسار الديناميكي للأقسام */}
+            
+            {/* مسار عرض صفحات الأقسام (مسار ديناميكي) */}
             <Route path="/category/:categoryName" element={<CategoryPage />} />
+            
+            {/* مسار عرض نتائج البحث */}
+            <Route path="/search" element={<SearchResultsPage />} />
+            
+            {/* مسار احتياطي لأي رابط غير موجود (صفحة 404) */}
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
+        
         <Footer />
       </div>
     </Router>
