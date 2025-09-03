@@ -153,7 +153,7 @@ export const articles = [
   {
     id: 4,
     imageUrl:
-      "https://aitnews.com/wp-content/uploads/2025/09/What-Keeps-the-Internet-Running-390x220.jpg",
+      "https://aitnews.com/wp-content/uploads/2025/09/Syrian-Minister-of-Communications-visit-to-Saudi-Arabia-780x470.jpg",
     category: "منوعات تقنية",
     title:
       "تعاون رقمي جديد.. زيارة وزير الاتصالات السوري للسعودية تفتح آفاقًا واعدة",
