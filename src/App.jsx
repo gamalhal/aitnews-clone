@@ -100,29 +100,60 @@
 
 // src/App.jsx
 
+// import React from 'react';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import { Header } from './components/Header';
+// import { HomePage } from './pages/HomePage';
+// import { ArticlePage } from './pages/ArticlePage'; // تأكد من إنشاء هذا الملف
+// import { Footer } from './components/Footer'; // <-- 1. استورد الفوتر
+
+// function App() {
+//   return (
+//     <Router>
+//       {/* استخدمنا flexbox لجعل الفوتر يلتصق بأسفل الصفحة حتى لو كان المحتوى قليلاً */}
+//       <div className="flex flex-col min-h-screen bg-gray-100">
+//         <Header />
+        
+//         {/* main سيأخذ كل المساحة المتاحة */}
+//         <main className="flex-grow">
+//           <Routes>
+//             <Route path="/" element={<HomePage />} />
+//             <Route path="/article/:id" element={<ArticlePage />} />
+//           </Routes>
+//         </main>
+        
+//         <Footer /> {/* <-- 2. أضف الفوتر هنا في النهاية */}
+//       </div>
+//     </Router>
+//   );
+// }
+
+// export default App;
+
+// src/App.jsx (تعديل)
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Header } from './components/Header';
 import { HomePage } from './pages/HomePage';
-import { ArticlePage } from './pages/ArticlePage'; // تأكد من إنشاء هذا الملف
-import { Footer } from './components/Footer'; // <-- 1. استورد الفوتر
+import { ArticlePage } from './pages/ArticlePage';
+import { Footer } from './components/Footer';
+import { CategoryPage } from './pages/CategoryPage'; // <-- 1. استورد صفحة القسم
 
 function App() {
   return (
     <Router>
-      {/* استخدمنا flexbox لجعل الفوتر يلتصق بأسفل الصفحة حتى لو كان المحتوى قليلاً */}
       <div className="flex flex-col min-h-screen bg-gray-100">
         <Header />
-        
-        {/* main سيأخذ كل المساحة المتاحة */}
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/article/:id" element={<ArticlePage />} />
+            {/* 2. أضف المسار الديناميكي للأقسام */}
+            <Route path="/category/:categoryName" element={<CategoryPage />} />
           </Routes>
         </main>
-        
-        <Footer /> {/* <-- 2. أضف الفوتر هنا في النهاية */}
+        <Footer />
       </div>
     </Router>
   );
