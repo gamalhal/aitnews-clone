@@ -74,21 +74,55 @@
 // src/App.jsx (تعديل نهائي)
 
 
+// import React from 'react';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import { Header } from './components/Header';
+// import { HomePage } from './pages/HomePage';
+// // سنقوم بإنشاء ArticlePage في الخطوة التالية
+
+// function App() {
+//   return (
+//     <Router>
+//       <div className="bg-gray-100 min-h-screen">
+//         <Header />
+//         <Routes>
+//           <Route path="/" element={<HomePage />} />
+//           {/* <Route path="/article/:id" element={<ArticlePage />} /> */}
+//         </Routes>
+//       </div>
+//     </Router>
+//   );
+// }
+
+// export default App;
+
+
+
+// src/App.jsx
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Header } from './components/Header';
 import { HomePage } from './pages/HomePage';
-// سنقوم بإنشاء ArticlePage في الخطوة التالية
+import { ArticlePage } from './pages/ArticlePage'; // تأكد من إنشاء هذا الملف
+import { Footer } from './components/Footer'; // <-- 1. استورد الفوتر
 
 function App() {
   return (
     <Router>
-      <div className="bg-gray-100 min-h-screen">
+      {/* استخدمنا flexbox لجعل الفوتر يلتصق بأسفل الصفحة حتى لو كان المحتوى قليلاً */}
+      <div className="flex flex-col min-h-screen bg-gray-100">
         <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          {/* <Route path="/article/:id" element={<ArticlePage />} /> */}
-        </Routes>
+        
+        {/* main سيأخذ كل المساحة المتاحة */}
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/article/:id" element={<ArticlePage />} />
+          </Routes>
+        </main>
+        
+        <Footer /> {/* <-- 2. أضف الفوتر هنا في النهاية */}
       </div>
     </Router>
   );

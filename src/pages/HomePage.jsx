@@ -16,8 +16,9 @@ export function HomePage() {
       <main className="container mx-auto p-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {articles.map(article => (
-            <ArticleCard 
+            <ArticleCard
               key={article.id} // المفتاح مهم جداً في الرياكت للمساعدة في الأداء
+              id={article.id}
               imageUrl={article.imageUrl}
               category={article.category}
               title={article.title}
